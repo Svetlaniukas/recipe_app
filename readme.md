@@ -92,7 +92,7 @@ Together, these files work to provide the site's functionality, from displaying 
 
 ## Contributors
 
-- [Your Name](https://github.com/yourusername) - Developer
+- [Svetlana Melichova][(https://github.com/Svetlaniukas/recipe_app)] - Developer
 
 ## License
 
