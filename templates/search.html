@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Recipes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="heading">Search Recipes by Ingredients</h1>
+
+    <!-- Search form for recipes -->
+    <form class="search-form" method="POST" action="{{ url_for('search') }}">
+        <input type="text" id="search_term" name="search_term" placeholder="Enter ingredients..." required>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Display the search results in a grid -->
+    <div class="recipe-grid">
+        {% if recipes %}
+            {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <div class="recipe-card-inner">
+                        <div class="recipe-card-front">
+                            <!-- Display the front side of the recipe card with an image and title -->
+                            <img src="{{ url_for('static', filename='images/' + recipe.image_name) }}" alt="{{ recipe.title }}" class="recipe-image">
+                            <h3 class="recipe-title">{{ recipe.title }}</h3>
+                        </div>
+                        <div class="recipe-card-back">
+                            <!-- Display the back side of the recipe card with the title and ingredients -->
+                            <h3>{{ recipe.title }}</h3>
+                            <p class="recipe-ingredients">{{ recipe.ingredients }}</p>
+                            <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}" class="btn btn-secondary recipe-btn">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <!-- Message when no recipes match the search criteria -->
+            <p class="no-results">No recipes found matching your criteria.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
